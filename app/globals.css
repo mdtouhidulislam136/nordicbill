@@ -47,6 +47,14 @@ body {
   color: var(--text-primary);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-weight: 450; /* Slightly bolder for better clarity on small screens */
+  }
 }
 
 /* Layout Utilities */
@@ -393,6 +401,10 @@ body {
 }
 
 @media (max-width: 768px) {
+  .navbar {
+    backdrop-filter: none;
+    background: var(--surface-color);
+  }
   .nav-container { padding: 1rem; }
   .nav-links { gap: 1rem; }
   .nav-logo-text { font-size: 1.1rem !important; }
@@ -517,6 +529,7 @@ body {
     transform: none !important;
     margin: 0 auto;
     max-width: 320px;
+    box-shadow: var(--shadow-md); /* Reduced shadow for mobile */
   }
 }
 .mockup-header { display: flex; justify-content: space-between; margin-bottom: 2rem; }
