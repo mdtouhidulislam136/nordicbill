@@ -155,33 +155,72 @@ export default function InvoiceForm({ data, setData }) {
 
       <h3 className="font-bold mt-4 mb-4">Line Items</h3>
       {data.items.map((item, index) => (
-        <div key={item.id} className="flex gap-2 items-center mb-4">
-          <input 
-            className="input" 
-            style={{flex: 3}} 
-            placeholder="Item Description" 
-            value={item.description} 
-            onChange={(e) => updateItem(item.id, "description", e.target.value)} 
-          />
-          <input 
-            className="input" 
-            style={{flex: 1}} 
-            type="number" 
-            placeholder="Qty" 
-            value={item.quantity} 
-            onChange={(e) => updateItem(item.id, "quantity", e.target.value)} 
-          />
-          <input 
-            className="input" 
-            style={{flex: 1}} 
-            type="number" 
-            placeholder="Unit Price" 
-            value={item.price} 
-            onChange={(e) => updateItem(item.id, "price", e.target.value)} 
-          />
-          <button className="btn btn-danger" onClick={() => removeItem(item.id)}>×</button>
+        <div key={item.id} className="invoice-item-row mb-6 pb-6 border-bottom-mobile">
+          <div className="flex-grow-2">
+            <label className="label mobile-only">Description</label>
+            <input 
+              className="input" 
+              placeholder="Item Description" 
+              value={item.description} 
+              onChange={(e) => updateItem(item.id, "description", e.target.value)} 
+            />
+          </div>
+          <div className="flex-1">
+            <label className="label mobile-only">Qty</label>
+            <input 
+              className="input" 
+              type="number" 
+              placeholder="Qty" 
+              value={item.quantity} 
+              onChange={(e) => updateItem(item.id, "quantity", e.target.value)} 
+            />
+          </div>
+          <div className="flex-1">
+            <label className="label mobile-only">Price</label>
+            <input 
+              className="input" 
+              type="number" 
+              placeholder="Price" 
+              value={item.price} 
+              onChange={(e) => updateItem(item.id, "price", e.target.value)} 
+            />
+          </div>
+          <button className="btn btn-danger remove-btn" onClick={() => removeItem(item.id)}>
+             <span className="desktop-only">×</span>
+             <span className="mobile-only">Remove Item</span>
+          </button>
         </div>
       ))}
+
+      <style jsx>{`
+        .invoice-item-row {
+          display: flex;
+          gap: 1rem;
+          align-items: flex-end;
+        }
+        .flex-grow-2 { flex: 3; }
+        .flex-1 { flex: 1; }
+        .mobile-only { display: none; }
+        
+        @media (max-width: 768px) {
+          .invoice-item-row {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.75rem;
+          }
+          .mobile-only { display: block; }
+          .desktop-only { display: none; }
+          .border-bottom-mobile {
+            border-bottom: 1px solid var(--border-color);
+          }
+          .remove-btn {
+            background-color: #fee2e2;
+            color: var(--danger-color);
+            margin-top: 0.5rem;
+            padding: 0.75rem;
+          }
+        }
+      `}</style>
       <button className="btn btn-primary" onClick={addItem}>+ Add Item</button>
 
       <div className="grid-2 mt-4">
