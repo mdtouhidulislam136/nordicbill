@@ -31,6 +31,9 @@ export default function InvoicePreview({ data }) {
 
   return (
     <div className="invoice-preview-outer-wrapper">
+      <p className="preview-scroll-hint no-print" aria-hidden="true">
+        ← Scroll to see full invoice →
+      </p>
       <div className="invoice-preview-container formal">
         {/* HEADER SECTION */}
         <div className="formal-header">
@@ -257,28 +260,15 @@ export default function InvoicePreview({ data }) {
           box-shadow: var(--shadow-lg);
         }
         .invoice-preview-container {
-          min-width: 800px; /* Preserve A4-like width for PDF layout */
+          min-width: 760px;
           margin: 0 auto;
         }
         .bic-cell { width: 150px; }
         .ref-amount-cell { width: 250px; }
-        
-        @media print {
-          .invoice-preview-outer-wrapper {
-            overflow: visible;
-            box-shadow: none;
-            border-radius: 0;
-          }
-          .invoice-preview-container {
-            min-width: auto;
-            width: 100%;
-          }
-        }
-
         @media (max-width: 850px) {
-           .invoice-preview-outer-wrapper {
-             border: 1px solid var(--border-color);
-           }
+          .invoice-preview-outer-wrapper {
+            border: 1px solid var(--border-color);
+          }
         }
       `}</style>
     </div>

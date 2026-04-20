@@ -5,11 +5,11 @@ export default function PrivacyPolicy() {
   return (
     <div className="landing-page">
       <Navbar />
-      <main className="container" style={{ padding: '4rem 2rem', maxWidth: '800px', margin: '0 auto', flex: 1 }}>
+      <main className="container privacy-main">
         <h1 className="title mb-4">Privacy Policy & GDPR Compliance</h1>
         <p className="mb-4">Last updated: April 20, 2026</p>
         
-        <div className="card" style={{ padding: '2rem' }}>
+        <div className="card privacy-card">
           <h2 className="subtitle">1. Data Storage & Processing</h2>
           <p className="mb-4">
             NordicBill is designed with privacy by default. We do <strong>not</strong> collect, store, or process any of the invoice data you enter into our tool. All data processing and PDF generation happens entirely locally within your web browser. 
@@ -32,6 +32,26 @@ export default function PrivacyPolicy() {
         </div>
       </main>
       <Footer />
+
+      <style jsx>{`
+        .privacy-main {
+          padding: 4rem 2rem;
+          max-width: 800px;
+          margin: 0 auto;
+          flex: 1;
+        }
+        .privacy-card {
+          padding: 2.5rem;
+        }
+        @media (max-width: 768px) {
+          .privacy-main {
+            padding: 2rem 1rem;
+          }
+          .privacy-card {
+            padding: 1.5rem;
+          }
+        }
+      `}</style>
     </div>
   );
 }

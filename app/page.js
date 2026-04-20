@@ -1,6 +1,7 @@
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import Footer from '../components/Footer';
+import Link from 'next/link';
 
 export default function LandingPage() {
   return (
@@ -12,28 +13,77 @@ export default function LandingPage() {
         {/* Features Section */}
         <section id="features" className="features-section">
           <div className="features-container">
-            <h2 className="section-title">Everything you need to bill clients</h2>
+            <h2 className="section-title">Professional billing made simple</h2>
             <div className="features-grid">
               <div className="feature-card">
                 <div className="feature-icon">🌍</div>
-                <h3>Global & Formal Standards</h3>
-                <p>Built-in support for multiple currencies, local tax names (VAT, GST, ALV), and formal European payment slips.</p>
+                <h3>Global Standards</h3>
+                <p>Support for multiple currencies, local tax names (VAT, GST, ALV), and formal bank transfer slips.</p>
               </div>
               <div className="feature-card">
                 <div className="feature-icon">⚡</div>
-                <h3>Real-time Preview</h3>
-                <p>See exactly what your client will see as you type. Watch calculations happen instantly.</p>
+                <h3>Live Preview</h3>
+                <p>Watch your invoice update in real-time as you type. What you see is exactly what you get.</p>
               </div>
               <div className="feature-card">
                 <div className="feature-icon">🔒</div>
-                <h3>GDPR Compliant</h3>
-                <p>100% private by default. All data stays entirely in your browser. We never save your business data to any server.</p>
+                <h3>100% Private</h3>
+                <p>Your data never leaves your browser. We don't use cookies to track your business details.</p>
+              </div>
+              <div className="feature-card">
+                <div className="feature-icon">📱</div>
+                <h3>Fully Responsive</h3>
+                <p>Create invoices on your phone, tablet, or desktop. Optimized for every screen size.</p>
+              </div>
+              <div className="feature-card">
+                <div className="feature-icon">🖨️</div>
+                <h3>Print Ready</h3>
+                <p>Perfectly formatted A4 PDF layouts that look professional when printed or emailed.</p>
+              </div>
+              <div className="feature-card">
+                <div className="feature-icon">💎</div>
+                <h3>No Account Needed</h3>
+                <p>Start billing immediately. No sign-up, no subscriptions, no hidden fees. Just free tools.</p>
               </div>
             </div>
           </div>
         </section>
+
+        {/* CTA Section */}
+        <section className="cta-section">
+          <div className="container" style={{ textAlign: 'center' }}>
+            <h2 className="cta-title">Ready to bill your first client?</h2>
+            <p className="cta-subtitle">Join thousands of freelancers using NordicBill for their daily invoicing needs.</p>
+            <Link href="/create" className="btn btn-primary hero-btn-main">Get Started for Free</Link>
+          </div>
+        </section>
       </main>
       <Footer />
+
+      <style jsx>{`
+        .cta-section {
+          padding: 6rem 2rem;
+          background: var(--primary-color);
+          color: white;
+        }
+        .cta-title {
+          font-size: 2.5rem;
+          font-weight: 800;
+          margin-bottom: 1rem;
+        }
+        .cta-subtitle {
+          font-size: 1.2rem;
+          opacity: 0.9;
+          margin-bottom: 2.5rem;
+          max-width: 600px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        @media (max-width: 768px) {
+          .cta-section { padding: 4rem 1.5rem; }
+          .cta-title { font-size: 2rem; }
+        }
+      `}</style>
     </div>
   );
 }

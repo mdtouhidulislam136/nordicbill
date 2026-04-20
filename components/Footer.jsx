@@ -10,8 +10,8 @@ export default function Footer() {
             <path d="M18 15H21" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <span style={{ fontWeight: 700, color: '#111827' }}>NordicBill &copy; {new Date().getFullYear()}</span>
-            <span style={{ fontSize: '0.8rem', color: '#6b7280', marginTop: '2px' }}>Created by Nordicdesh</span>
+            <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>NordicBill &copy; {new Date().getFullYear()}</span>
+            <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '2px' }}>Created by Nordicdesh</span>
           </div>
         </div>
         <div className="footer-links">
