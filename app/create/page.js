@@ -34,6 +34,17 @@ export default function CreateInvoicePage() {
   const total = subtotal + taxAmount;
   const formattedTotal = `${invoiceData.currency}${total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
+  const handleShare = (method) => {
+    const text = `Hi, here is Invoice ${invoiceData.invoiceNumber} for ${formattedTotal}. You can find the PDF attached.`;
+    const subject = `Invoice ${invoiceData.invoiceNumber} from NordicBill`;
+    
+    if (method === 'whatsapp') {
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+    } else if (method === 'email') {
+      window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
+    }
+  };
+
   return (
     <div className="app-container">
       {/* Top header */}
@@ -46,10 +57,19 @@ export default function CreateInvoicePage() {
             Back
           </a>
           <h1 className="title" style={{ marginBottom: 0 }}>Create Invoice</h1>
-          {/* Desktop PDF button */}
-          <button className="btn btn-primary desktop-pdf-btn" onClick={() => window.print()} aria-label="Download or print invoice as PDF">
-            ⬇ Download PDF
-          </button>
+          
+          <div className="desktop-actions no-print">
+            <div className="flex-col items-end" style={{ gap: '0.25rem' }}>
+              <div className="flex gap-2">
+                <button className="btn btn-secondary" onClick={() => handleShare('whatsapp')} title="Share details via WhatsApp">WhatsApp</button>
+                <button className="btn btn-secondary" onClick={() => handleShare('email')} title="Share details via Email">Email</button>
+                <button className="btn btn-primary" onClick={() => window.print()}>
+                  ⬇ Download PDF
+                </button>
+              </div>
+              <span style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>Download PDF first, then share details</span>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -100,44 +120,23 @@ export default function CreateInvoicePage() {
       </main>
 
       {/* Sticky mobile bottom bar */}
-      <div className="mobile-pdf-bar no-print" aria-label="Invoice total and download">
-        <span className="pdf-amount">Total: <strong>{formattedTotal}</strong></span>
-        <button className="btn btn-primary" onClick={() => window.print()} aria-label="Download or print invoice as PDF">
-          ⬇ Download PDF
-        </button>
+      <div className="mobile-pdf-bar no-print">
+        <div className="mobile-pdf-bar-left">
+          <span className="pdf-amount">Total: <strong>{formattedTotal}</strong></span>
+          <div style={{ fontSize: '0.65rem', opacity: 0.7 }}>Download PDF then share</div>
+        </div>
+        <div className="mobile-pdf-actions">
+          <button className="btn btn-secondary" onClick={() => handleShare('whatsapp')} title="Share via WhatsApp">
+            WA
+          </button>
+          <button className="btn btn-secondary" onClick={() => handleShare('email')} title="Share via Email">
+            @
+          </button>
+          <button className="btn btn-primary" onClick={() => window.print()}>
+            ⬇ PDF
+          </button>
+        </div>
       </div>
-
-      <style jsx>{`
-        .create-header {
-          padding: 1.5rem 2rem 0;
-        }
-        .create-header-inner {
-          display: flex;
-          align-items: center;
-          gap: 1.5rem;
-          margin-bottom: 1.5rem;
-        }
-        .create-header-inner .title {
-          flex: 1;
-        }
-        .desktop-pdf-btn {
-          flex-shrink: 0;
-        }
-        .create-main {
-          padding: 0 2rem 2rem;
-        }
-        .desktop-preview-header { display: flex; }
-
-        @media (max-width: 1024px) {
-          .create-header { padding: 1rem 1rem 0; }
-          .create-main { padding: 0 1rem 1rem; }
-          .desktop-pdf-btn { display: none; }
-        }
-        @media (max-width: 480px) {
-          .create-header { padding: 0.75rem 0.75rem 0; }
-          .create-main { padding: 0 0.75rem 0.75rem; }
-        }
-      `}</style>
     </div>
   );
 }

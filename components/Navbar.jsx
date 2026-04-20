@@ -12,9 +12,10 @@ export default function Navbar() {
         <Link href="/" className="nav-logo" style={{ gap: '0.75rem' }}>
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <rect width="32" height="32" rx="8" fill="#2563eb"/>
-            <path d="M9 23L9 9L15 23L15 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M23 9H18V23" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M18 15H21" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M7 23V9L13 23V9" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M19 9H22C24.2091 9 26 10.7909 26 13C26 15.2091 24.2091 17 22 17H19V9Z" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M19 17H23C25.2091 17 27 18.7909 27 21C27 23.2091 25.2091 25 23 25H19V17Z" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M19 9V25" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
           <span className="nav-logo-text" style={{ fontSize: '1.4rem' }}>NordicBill</span>
         </Link>

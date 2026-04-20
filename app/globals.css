@@ -373,18 +373,33 @@ body {
 @media print {
   @page { size: A4; margin: 1.5cm; }
   body { background: white !important; color: black !important; }
-  .card, header, .no-print, .mobile-tab-bar { display: none !important; }
-  .main-layout { display: block !important; }
+  .card, header, .no-print, .mobile-tabs, .mobile-pdf-bar, .create-header { display: none !important; }
+  .main-layout { display: block !important; padding: 0 !important; margin: 0 !important; }
+  
+  /* Force preview section to show during print even if inactive on mobile */
+  .preview-section { 
+    display: block !important; 
+    width: 100% !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 9999 !important;
+  }
+  
   .invoice-preview-container.formal {
     box-shadow: none !important;
     max-width: 100% !important;
     padding: 0 !important;
     border: none !important;
+    margin: 0 !important;
   }
   .invoice-preview-outer-wrapper {
     overflow: visible !important;
     box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
   }
+  .preview-scroll-hint { display: none !important; }
 }
 
 /* ---------------- WEBSITE LANDING PAGE STYLES ---------------- */
@@ -445,7 +460,7 @@ body {
   .nav-container { padding: 1rem; }
   .nav-links { gap: 1rem; }
   .nav-logo-text { font-size: 1.1rem !important; }
-  .nav-link { display: none; } /* Hide features link on mobile for now */
+  .nav-link { display: block; } /* Show features link on mobile */
 }
 .nav-link {
   text-decoration: none;
@@ -758,15 +773,28 @@ body {
     align-items: center;
     justify-content: space-between;
   }
+  .mobile-pdf-bar-left {
+    flex-shrink: 0;
+  }
+  .mobile-pdf-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex: 1;
+    justify-content: flex-end;
+  }
   .mobile-pdf-bar .pdf-amount {
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--text-secondary);
   }
   .mobile-pdf-bar .btn {
-    flex: 1;
-    max-width: 220px;
-    font-size: 0.95rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    min-width: 44px;
+  }
+  .mobile-pdf-bar .btn-primary {
+    flex: 2;
+    max-width: 150px;
   }
   /* Add padding so content isn't hidden behind bar */
   .app-container { padding-bottom: 80px; }
@@ -798,6 +826,145 @@ body {
 }
 @media (max-width: 768px) {
   .iban-field-full { grid-column: span 1; }
+}
+
+/* --- Consolidated Page & Component Styles (Moved from styled-jsx) --- */
+
+/* CTA Section (app/page.js) */
+.cta-section {
+  padding: 6rem 2rem;
+  background: var(--primary-color);
+  color: white;
+}
+.cta-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+.cta-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Privacy Page (app/privacy/page.js) */
+.privacy-main {
+  padding: 4rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  flex: 1;
+}
+.privacy-card {
+  padding: 2.5rem;
+}
+
+/* Create Page Header & Layout (app/create/page.js) */
+.create-header {
+  padding: 1.5rem 2rem 0;
+}
+.create-header-inner {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.create-header-inner .title {
+  flex: 1;
+}
+.desktop-pdf-btn {
+  flex-shrink: 0;
+}
+.create-main {
+  padding: 0 2rem 2rem;
+}
+.desktop-preview-header { 
+  display: flex; 
+}
+
+/* Invoice Form Rows (components/InvoiceForm.jsx) */
+.invoice-item-row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+}
+.flex-grow-2 { flex: 3; }
+.item-qty { flex: 1; min-width: 70px; }
+.item-price { flex: 1.2; min-width: 90px; }
+.item-label { display: none; }
+.remove-item-btn {
+  background: transparent;
+  color: var(--danger-color);
+  border: 1px solid var(--danger-color);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.remove-item-btn:hover { background: #fee2e2; }
+.border-bottom-item { border-bottom: 1px solid var(--border-color); }
+.border-bottom-item:last-of-type { border-bottom: none; }
+
+/* Invoice Preview Wrapper (components/InvoicePreview.jsx) */
+.invoice-preview-outer-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  background: white;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+.invoice-preview-container {
+  min-width: 760px;
+  margin: 0 auto;
+}
+.bic-cell { width: 150px; }
+.ref-amount-cell { width: 250px; }
+
+/* --- Consolidated Responsiveness (Moved from styled-jsx) --- */
+
+@media (max-width: 1024px) {
+  .create-header { padding: 1rem 1rem 0; }
+  .create-main { padding: 0 1rem 1rem; }
+  .desktop-pdf-btn { display: none; }
+  .desktop-preview-header { display: none; }
+}
+
+@media (max-width: 850px) {
+  .invoice-preview-outer-wrapper {
+    border: 1px solid var(--border-color);
+  }
+}
+
+@media (max-width: 768px) {
+  .cta-section { padding: 4rem 1.5rem; }
+  .cta-title { font-size: 2rem; }
+  
+  .privacy-main { padding: 2rem 1rem; }
+  .privacy-card { padding: 1.5rem; }
+
+  .invoice-item-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  .item-label { display: block; }
+  .item-qty, .item-price { min-width: unset; }
+  .remove-item-btn {
+    background: #fee2e2;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .create-header { padding: 0.75rem 0.75rem 0; }
+  .create-main { padding: 0 0.75rem 0.75rem; }
+  .cta-title { font-size: 1.75rem; }
+  .cta-subtitle { font-size: 1rem; }
 }
 
 /* Landing page dark mode fixes */

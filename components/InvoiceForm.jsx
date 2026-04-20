@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 const countryData = {
@@ -224,44 +226,6 @@ export default function InvoiceForm({ data, setData }) {
         </div>
       ))}
 
-      <style jsx>{`
-        .invoice-item-row {
-          display: flex;
-          gap: 1rem;
-          align-items: flex-end;
-        }
-        .flex-grow-2 { flex: 3; }
-        .item-qty { flex: 1; min-width: 70px; }
-        .item-price { flex: 1.2; min-width: 90px; }
-        .item-label { display: none; }
-        .remove-item-btn {
-          background: transparent;
-          color: var(--danger-color);
-          border: 1px solid var(--danger-color);
-          padding: 0.5rem 0.75rem;
-          font-size: 0.8rem;
-          white-space: nowrap;
-          flex-shrink: 0;
-        }
-        .remove-item-btn:hover { background: #fee2e2; }
-        .border-bottom-item { border-bottom: 1px solid var(--border-color); }
-        .border-bottom-item:last-of-type { border-bottom: none; }
-
-        @media (max-width: 768px) {
-          .invoice-item-row {
-            flex-direction: column;
-            align-items: stretch;
-            gap: 0.75rem;
-          }
-          .item-label { display: block; }
-          .item-qty, .item-price { min-width: unset; }
-          .remove-item-btn {
-            background: #fee2e2;
-            padding: 0.75rem;
-            font-size: 0.9rem;
-          }
-        }
-      `}</style>
 
       <button className="btn btn-primary" onClick={addItem} style={{ marginTop: '0.5rem' }}>+ Add Item</button>
 

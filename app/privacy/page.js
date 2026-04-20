@@ -33,25 +33,6 @@ export default function PrivacyPolicy() {
       </main>
       <Footer />
 
-      <style jsx>{`
-        .privacy-main {
-          padding: 4rem 2rem;
-          max-width: 800px;
-          margin: 0 auto;
-          flex: 1;
-        }
-        .privacy-card {
-          padding: 2.5rem;
-        }
-        @media (max-width: 768px) {
-          .privacy-main {
-            padding: 2rem 1rem;
-          }
-          .privacy-card {
-            padding: 1.5rem;
-          }
-        }
-      `}</style>
     </div>
   );
 }

@@ -250,27 +250,6 @@ export default function InvoicePreview({ data }) {
         </div>
       </div>
 
-      <style jsx>{`
-        .invoice-preview-outer-wrapper {
-          width: 100%;
-          overflow-x: auto;
-          -webkit-overflow-scrolling: touch;
-          background: white;
-          border-radius: var(--radius-xl);
-          box-shadow: var(--shadow-lg);
-        }
-        .invoice-preview-container {
-          min-width: 760px;
-          margin: 0 auto;
-        }
-        .bic-cell { width: 150px; }
-        .ref-amount-cell { width: 250px; }
-        @media (max-width: 850px) {
-          .invoice-preview-outer-wrapper {
-            border: 1px solid var(--border-color);
-          }
-        }
-      `}</style>
     </div>
   );
 }

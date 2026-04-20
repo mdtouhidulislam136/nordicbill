@@ -60,30 +60,6 @@ export default function LandingPage() {
       </main>
       <Footer />
 
-      <style jsx>{`
-        .cta-section {
-          padding: 6rem 2rem;
-          background: var(--primary-color);
-          color: white;
-        }
-        .cta-title {
-          font-size: 2.5rem;
-          font-weight: 800;
-          margin-bottom: 1rem;
-        }
-        .cta-subtitle {
-          font-size: 1.2rem;
-          opacity: 0.9;
-          margin-bottom: 2.5rem;
-          max-width: 600px;
-          margin-left: auto;
-          margin-right: auto;
-        }
-        @media (max-width: 768px) {
-          .cta-section { padding: 4rem 1.5rem; }
-          .cta-title { font-size: 2rem; }
-        }
-      `}</style>
     </div>
   );
 }
