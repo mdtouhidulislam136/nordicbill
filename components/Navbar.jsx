@@ -21,14 +21,22 @@ export default function Navbar() {
         
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden flex flex-col gap-1.5 p-2 bg-transparent border-none cursor-pointer"
+          className="mobile-toggle"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
-          style={{ display: 'none' }} /* This will be handled by CSS or I'll just use inline styles for simplicity since I'm not sure about Tailwind availability in this context */
         >
-          <span style={{ width: '24px', height: '2px', background: 'var(--text-primary)', display: 'block' }}></span>
-          <span style={{ width: '24px', height: '2px', background: 'var(--text-primary)', display: 'block' }}></span>
-          <span style={{ width: '24px', height: '2px', background: 'var(--text-primary)', display: 'block' }}></span>
+          {isMenuOpen ? (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          ) : (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          )}
         </button>
 
         <div className={`nav-links ${isMenuOpen ? 'mobile-open' : ''}`}>
@@ -38,9 +46,25 @@ export default function Navbar() {
       </div>
 
       <style jsx>{`
+        .mobile-toggle {
+          display: none;
+          background: transparent;
+          border: none;
+          color: var(--text-primary);
+          cursor: pointer;
+          padding: 0.5rem;
+          border-radius: 4px;
+          transition: background 0.2s;
+        }
+        .mobile-toggle:hover {
+          background: rgba(0, 0, 0, 0.05);
+        }
+        
         @media (max-width: 768px) {
-          button {
-            display: flex !important;
+          .mobile-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
           .nav-links {
             display: ${isMenuOpen ? 'flex' : 'none'} !important;
@@ -48,20 +72,28 @@ export default function Navbar() {
             top: 100%;
             left: 0;
             right: 0;
-            background: white;
+            background: var(--surface-color);
             flex-direction: column;
             padding: 1.5rem;
             border-bottom: 1px solid var(--border-color);
             box-shadow: var(--shadow-lg);
-            gap: 1.5rem !important;
+            gap: 1.25rem !important;
             z-index: 50;
+            animation: slideDown 0.3s ease-out;
+          }
+          @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
           }
           .nav-link {
             display: block !important;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            padding: 0.5rem 0;
           }
           .nav-cta {
             width: 100%;
+            padding: 0.75rem !important;
+            font-size: 1rem !important;
           }
         }
       `}</style>
