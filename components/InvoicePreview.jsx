@@ -284,4 +284,3 @@ export default function InvoicePreview({ data }) {
     </div>
   );
 }
-}
